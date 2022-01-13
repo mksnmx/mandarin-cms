@@ -18,7 +18,6 @@ defined('_JEXEC') or die;
 jimport('Jflib.init');
 jimport('Joomfunding.init');
 jimport('Emailtemplates.init');
-//jimport('Jflib.libs.Stripe.init');
 
 JObserverMapper::addObserverClassToClass(Joomfunding\Observer\Transaction\TransactionObserver::class, Joomfunding\Transaction\TransactionManager::class, array('typeAlias' => 'com_joomfunding.payment'));
 
