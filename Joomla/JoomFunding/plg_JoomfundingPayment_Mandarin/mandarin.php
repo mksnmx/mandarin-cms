@@ -56,16 +56,8 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
      */
     public function onProjectPayment($context, $item, $params)
     {
-        //test
-        //print_r($item);die();
+
         $user = JFactory::getUser();
-        
-        //test
-        //print_r($item);
-        //print_r($user);
-        //die();
-        
-        //end test
         
         if (strcmp('com_joomfunding.payment', $context) !== 0) {
             return null;
@@ -125,12 +117,10 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
         // Prepare optional data.
         $optionalData = array($dataLabel, $dataPanelLabel, $dataName, $dataImage);
         $optionalData = array_filter($optionalData);
-        //$transactionId = Jflib\Utilities\StringHelper::generateRandomString(9, 'MNN');
 
         
         $projectId = $item->id;
         $rewardId  = $item->rewardId;
-        //$bankId    = $this->app->input->get('bank_id');
         $amount    = $item->amount;
         $aUserId   = $this->app->getUserState('auser_id');
         $userId    = $user->id;
@@ -153,8 +143,6 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
         }
         $paymentSessionRemote->setGateway($this->serviceAlias);
         $paymentSessionRemote->store();
-        //test
-        //print_r(JFactory::getApplication()->getMenu()->getActive()->id);die();
         
         $html[] = '<form action="https://secure.mandarinpay.com/Pay" method="post">';
         $html[] = $this->generate_form($apiKeys['secret'],array(
@@ -172,9 +160,6 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
             $html[] = '<p>' . htmlentities($this->params->get('additional_info'), ENT_QUOTES, 'UTF-8') . '</p>';
         }
 
-        //if ($this->params->get('test_mode', 1)) {
-        //    $html[] = '<p class="bg-info p-10-5 mt-5"><span class="fa fa-info-circle"></span> ' . JText::_($this->textPrefix . '_WORKS_SANDBOX') . '</p>';
-        //}
 
         $html[] = '</div>';
 
@@ -236,8 +221,6 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
         $apiKeys = $this->getKeys();
         if(!$this->check_sign($apiKeys['secret'], $data)) {
             die('Not MandarinPay');
-        } else {
-            //print_r($input);die();
         }
         
         // Get transaction ID
@@ -263,7 +246,6 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
 
         // Validate transaction data
         $validData = $this->validateData($data, $currency->getCode(), $paymentSessionRemote);
-        //  $validData = $transactionData;
             if ($validData === null) {
                 return null;
             }
@@ -306,10 +288,6 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
             // Generate data object, based on the payment session properties.
             $paymentResult->paymentSession = $paymentSessionRemote;
 
-            // Removing intention.
-            //$this->removeIntention($paymentSessionRemote, $transaction);
-        //}
-            //test
             echo 'OK';die();
         return $paymentResult;
     }
@@ -346,11 +324,6 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
 
 	$to_hash = $to_hash .'-'. $secret;
 	$calculated_sign = hash('sha256', $to_hash);
-        //test
-        //print($calculated_sign ." - ". $sign);die();
-        //$filed = "save.txt";
-        //$rez = $calculated_sign ." - ". $sign;
-        //file_put_contents($filed, $rez);
 
 	return $calculated_sign == $sign;
 }
@@ -379,7 +352,6 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
         }
 
         $amount = ArrayHelper::getValue($data, 'price');
-        //$amount = (float)($amount <= 0) ? 0 : $amount / 100;
 
         // Prepare transaction data.
         $transactionData = array(
@@ -394,21 +366,18 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
             'service_provider' => $this->serviceProvider,
             'service_alias'    => $this->serviceAlias
         );
-        //print_r($transactionData);die();
 
         // Check User Id, Project ID and Transaction ID.
         if (!$transactionData['project_id'] or !$transactionData['txn_id']) {
             $this->log->add(JText::_($this->textPrefix . '_ERROR_INVALID_TRANSACTION_DATA'), $this->errorType, $transactionData);
             return null;
         }
-//print_r($transactionData);die();
         // Check if project record exists in database.
         $projectRecord = new Joomfunding\Validator\Project\Record(JFactory::getDbo(), $transactionData['project_id']);
         if (!$projectRecord->isValid()) {
             $this->log->add(JText::_($this->textPrefix . '_ERROR_INVALID_PROJECT'), $this->errorType, $transactionData);
             return null;
         }
-//print_r($transactionData);die();
         // Check if reward record exists in database.
         if ($transactionData['reward_id'] > 0) {
             $rewardRecord = new Joomfunding\Validator\Reward\Record(JFactory::getDbo(), $transactionData['reward_id'], array('state' => Jflib\Constants::PUBLISHED));
@@ -417,7 +386,6 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
                 return null;
             }
         }
-//print_r($transactionData);die();
         return $transactionData;
     }
 
@@ -453,7 +421,6 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
         $transaction->bind($transactionData, array('extra_data'));
         $transaction->addExtraData($transactionData['extra_data']);
         $transaction->store();
-//print_r($transaction);die();
         // DEBUG DATA
         //JDEBUG ? $this->log->add(JText::_($this->textPrefix . '_DEBUG_TRANSACTION_OBJECT_AFTER_STORED_DATA'), $this->debugType, $transaction->getProperties()) : null;
 
@@ -484,13 +451,8 @@ class plgJoomfundingPaymentMandarin extends Joomfunding\Payment\Plugin
     {
         $keys = array();
 
-        //if ($this->params->get('test_mode', 1)) { // Test server published key.
-        //    $keys['published'] = trim($this->params->get('test_published_key'));
-        //    $keys['secret']    = trim($this->params->get('test_secret_key'));
-        //} else {// Live server access token.
             $keys['published'] = trim($this->params->get('published_key'));
             $keys['secret']    = trim($this->params->get('secret_key'));
-        //}
 
         return $keys;
     }
