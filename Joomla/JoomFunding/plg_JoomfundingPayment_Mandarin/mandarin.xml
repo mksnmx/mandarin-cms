@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.10" type="plugin" group="joomfundingpayment" method="upgrade">
+    <name>JoomFundingPayment - Mandarin</name>
+    <author>Mandarin</author>
+    <creationDate>November 2021</creationDate>
+    <authorEmail>hello@mandarin.io</authorEmail>
+    <authorUrl>https://mandarin.io</authorUrl>
+    <copyright>2021 Mandarin</copyright>
+    <license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+    <version>1.0</version>
+    <description>JoomfundingPayment - Mandarin is a plugin that provides an ability to make payments via Mandarin by simple form.</description>
+    <languages  folder="language">
+        <language tag="en-GB">en-GB/en-GB.plg_joomfundingpayment_mandarin.ini</language>
+        <language tag="en-GB">en-GB/en-GB.plg_joomfundingpayment_mandarin.sys.ini</language>
+    </languages>
+    <files>
+        <filename plugin="mandarin">mandarin.php</filename>
+		<folder>images</folder>
+    </files>
+    <config>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/administrator/components/com_joomfunding/models/fields">
+                <field name="secret_key" type="text" label="PLG_JOOMFUNDINGPAYMENT_MANDARIN_SECRET_KEY" description="PLG_JOOMFUNDINGPAYMENT_MANDARIN_SECRET_KEY_DESC" class="input-xxlarge" />
+                <field name="published_key" type="text" label="PLG_JOOMFUNDINGPAYMENT_MANDARIN_PUBLISHABLE_KEY" description="PLG_JOOMFUNDINGPAYMENT_MANDARIN_PUBLISHABLE_KEY_DESC" class="input-xxlarge" />
+                <field name="additional_info" type="textarea" label="PLG_JOOMFUNDINGPAYMENT_MANDARIN_ADDITIONAL_INFO" description="PLG_JOOMFUNDINGPAYMENT_MANDARIN_ADDITIONAL_INFO_DESC" class="input-xxlarge" />
+                <field name="callback_url" type="jfurl" default="index.php?option=com_joomfunding&amp;task=notifier.notify&amp;format=raw&amp;payment_service=mandarin" label="PLG_JOOMFUNDINGPAYMENT_MANDARIN_CALLBACK_URL" description="PLG_JOOMFUNDINGPAYMENT_MANDARIN_CALLBACK_URL_DESC" class="input-xxlarge" />
+			</fieldset>
+            <fieldset name="emails" label="PLG_JOOMFUNDINGPAYMENT_MANDARIN_NOTIFICATION_EMAILS" addfieldpath="/administrator/components/com_joomfundingemails/models/fields">
+                <field name="admin_mail_id" type="emailtemplate" default="0" label="PLG_JOOMFUNDINGPAYMENT_MANDARIN_SEND_MAIL_ADMIN" description="PLG_JOOMFUNDINGPAYMENT_MANDARIN_SEND_MAIL_ADMIN_DESC" class="btn-group" />
+                <field name="creator_mail_id" type="emailtemplate" default="0" label="PLG_JOOMFUNDINGPAYMENT_MANDARIN_SEND_MAIL_CREATOR" description="PLG_JOOMFUNDINGPAYMENT_MANDARIN_SEND_MAIL_CREATOR_DESC" class="btn-group" />
+                <field name="user_mail_id" type="emailtemplate" default="0" label="PLG_JOOMFUNDINGPAYMENT_MANDARIN_SEND_MAIL_USER" description="PLG_JOOMFUNDINGPAYMENT_MANDARIN_SEND_MAIL_USER_DESC" class="btn-group" />
+
+                <field name="email_mode" type="list" default="html" label="PLG_JOOMFUNDINGPAYMENT_MANDARIN_EMAIL_MODE" description="PLG_JOOMFUNDINGPAYMENT_MANDARIN_EMAIL_MODE_DESC" >
+                    <option value="plain">PLG_JOOMFUNDINGPAYMENT_MANDARIN_PLAIN</option>
+                    <option value="html">PLG_JOOMFUNDINGPAYMENT_MANDARIN_HTML</option>
+                </field>
+            </fieldset>
+        </fields>
+	</config>
+>
+</extension>
