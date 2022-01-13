@@ -2,7 +2,7 @@
 /**
  * @package      Joomfunding
  * @subpackage   Plugins
- * @author       JoomBoost
+ * @author       MandarinLtd
  * @copyright    Copyright (C) 2019 JoomBoost <Support@joomboost.com>. All rights reserved.
  * @license      GNU General Public License version 3 or later; see LICENSE.txt
  */
