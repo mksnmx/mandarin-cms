@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="3.10" type="plugin" group="joomfundingpayment" method="upgrade">
     <name>JoomFundingPayment - Mandarin</name>
-    <author>Mandarin</author>
-    <creationDate>November 2021</creationDate>
-    <authorEmail>hello@mandarin.io</authorEmail>
+    <author>MandarinLtd</author>
+    <creationDate>January 2022</creationDate>
+    <authorEmail>admin@mandarin.io</authorEmail>
     <authorUrl>https://mandarin.io</authorUrl>
-    <copyright>2021 Mandarin</copyright>
+    <copyright>2022 MandarinLtd</copyright>
     <license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
     <version>1.0</version>
     <description>JoomfundingPayment - Mandarin is a plugin that provides an ability to make payments via Mandarin by simple form.</description>
