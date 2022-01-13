@@ -23,7 +23,7 @@ jimport('Emailtemplates.init');
 JObserverMapper::addObserverClassToClass(Joomfunding\Observer\Transaction\TransactionObserver::class, Joomfunding\Transaction\TransactionManager::class, array('typeAlias' => 'com_joomfunding.payment'));
 
 /**
- * Joomfunding Stripe Payment Plug-in
+ * Joomfunding Mandarin Payment Plug-in
  *
  * @package      Joomfunding
  * @subpackage   Plug-ins
