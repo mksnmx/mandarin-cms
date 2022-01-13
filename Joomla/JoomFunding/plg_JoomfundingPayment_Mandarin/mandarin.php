@@ -3,8 +3,8 @@
  * @package      Joomfunding
  * @subpackage   Plugins
  * @author       MandarinLtd
- * @copyright    Copyright (C) 2019 JoomBoost <Support@joomboost.com>. All rights reserved.
- * @license      GNU General Public License version 3 or later; see LICENSE.txt
+ * @copyright    Copyright (C) 2022 <admin@mandarin.io>. All rights reserved.
+ * @license      GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 use Joomfunding\Transaction\Transaction;
