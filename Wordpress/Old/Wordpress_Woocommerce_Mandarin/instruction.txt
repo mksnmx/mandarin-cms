@@ -1,0 +1,11 @@
+Инструкция по установке:
+    Распакуйте архив и скопируйте папку "woocommrce-mandarin-pay" в директорию /wp-content/plugins/.
+    В панели администратора зайдите в раздел Плагины (Plugins), найдите модуль MandarinPay и активируйте его (Activate). 
+    В панели администратора зайдите в настройки WooCommerce, вкладка Payment Gateways, в верхнем списке выберите MandarinPay.
+    Укажите Merchant Id полученый в системе Mandarinpay и секретный ключ (Secret Key).
+    В системе MandarinPay укажите:
+	Callback URL: http://[ваш сайт]/?wc-api=Mandarin_Pay
+    	User Redirect URL: http://[ваш сайт]/checkout/order-received/
+   	
+Модуль разрабатывалcя и тестировался на версии WP WooCommerce 2.4.13.
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="windows-1251"?>
+<module>
+    <version>1.0</version>
+    <name>Mandarin</name>
+    <description>Прием оплат через MandarinBank</description>
+    <category>sale</category>
+    <adminmenu>
+        <title>Прием оплат через MandarinBank</title>
+        <capability>true</capability>
+    </adminmenu>
+</module>

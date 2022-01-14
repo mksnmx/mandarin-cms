@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension version="1.0" type="plugin" group="vmpayment" method="upgrade">
+    <name>MandarinPay</name>
+    <creationDate>January 30 2016</creationDate>
+    <author>LIF</author>
+    <authorUrl>http://www.lif.org.ua</authorUrl>
+    <copyright>Copyright (C) 2016 MandarinPay. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+    <version>1.0.1</version>
+    <description>MandarinPay payment plugin for VirtueMart</description>
+
+    <files>
+        <filename plugin="mandarinpay">mandarinpay.php</filename>
+        <folder>language</folder>
+    </files>
+	<vmconfig>
+		<fields name="params">
+			<fieldset name="basic" addfieldpath="/administrator/components/com_virtuemart/fields">
+				<field type="vmtitle" default="VMPAYMENT_MANDARINPAY_SETUP_SECTION"
+					   description="VMPAYMENT_MANDARINPAY_SETUP_DESC"/>
+				<field name="merchant_id" type="text" size="50" label="VMPAYMENT_MANDARINPAY_MERCHANT_ID" description="VMPAYMENT_MANDARINPAY_MERCHANT_ID_DESC"/>
+				<field name="secret_key" type="text" size="50" label="VMPAYMENT_MANDARINPAY_SECRET_KEY" description="VMPAYMENT_MANDARINPAY_SECRET_KEY_DESC"/>
+				<field name="status_pending" type="vmorderstate" scope="com_virtuemart" default="P"
+					   label="VMPAYMENT_MANDARINPAY_STATUS_PENDING"/>   
+				<field name="status_confirmed" type="vmorderstate" scope="com_virtuemart" default="C"
+					   label="VMPAYMENT_MANDARINPAY_STATUS_CONFIRMED"/>   
+				<field name="status_cancelled" type="vmorderstate" scope="com_virtuemart" default="X"
+					   label="VMPAYMENT_MANDARINPAY_STATUS_CANCELLED"/>
+			</fieldset>
+		</fields>
+	</vmconfig>
+		
+	<!--for backward compatibility with VM2-->	
+    <params addpath="/administrator/components/com_virtuemart/elements">
+        <param type="vmjpluginwarning"/>
+        <param type="vmtitle" default="VMPAYMENT_MANDARINPAY_SETUP_SECTION"
+               description="VMPAYMENT_MANDARINPAY_SETUP_DESC"/>
+		<param name="merchant_id" type="text" size="50" label="VMPAYMENT_MANDARINPAY_MERCHANT_ID" description="VMPAYMENT_MANDARINPAY_MERCHANT_ID_DESC"/>
+		<param name="secret_key" type="text" size="50" label="VMPAYMENT_MANDARINPAY_SECRET_KEY" description="VMPAYMENT_MANDARINPAY_SECRET_KEY_DESC"/>
+        <param name="status_pending" type="vmorderstate" scope="com_virtuemart" default="P"
+               label="VMPAYMENT_MANDARINPAY_STATUS_PENDING"/>   
+		<param name="status_confirmed" type="vmorderstate" scope="com_virtuemart" default="C"
+               label="VMPAYMENT_MANDARINPAY_STATUS_CONFIRMED"/>   
+		<param name="status_cancelled" type="vmorderstate" scope="com_virtuemart" default="X"
+               label="VMPAYMENT_MANDARINPAY_STATUS_CANCELLED"/>  
+	</params>      
+</extension>

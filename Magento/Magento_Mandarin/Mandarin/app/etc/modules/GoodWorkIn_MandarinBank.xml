@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<GoodWorkIn_MandarinBank>
+			<active>true</active>
+			<codePool>local</codePool>
+			<depends>
+                     <Mage_Payment />
+            </depends>
+		</GoodWorkIn_MandarinBank>
+	</modules>
+</config>

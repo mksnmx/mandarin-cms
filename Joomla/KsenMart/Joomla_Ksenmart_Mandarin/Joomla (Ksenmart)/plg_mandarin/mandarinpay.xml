@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="plugin" group="kmpayment" version="2.5.0" method="upgrade">
+    <name>KSM_PAYMENT_MANDARINPAY</name>
+    <version>1.0.2</version>
+    <creationDate>February 2016</creationDate>
+    <author>Chingiz Bayshruin</author>
+    <authorEmail>info@bayengineering.net</authorEmail>
+    <authorUrl>http://www.baydevgroup.net/</authorUrl>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <description>KSM_PAYMENT_MANDARINPAY_DESCRIPTION</description>
+
+    <files>
+		<filename plugin="mandarinpay">mandarinpay.php</filename>
+		<filename>index.html</filename>
+        <folder>sql</folder>
+		<folder>language</folder>
+    </files>
+    
+    <languages folder="language">
+        <language tag="ru-RU">ru-RU/ru-RU.plg_kmpayment_mandarinpay.sys.ini</language>
+    </languages>
+
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install.mysql.utf8.sql</file>
+        </sql>
+    </install>
+
+   
+</extension>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout version="0.0.1">
+    <mandarinbank_index_index>
+        <reference name="head">
+            <action method="setTitle" translate="title">
+                <title>Mandarin Bank</title>
+            </action>
+        </reference>
+        <reference name="content">
+            <block name="mandarinbank.form" as="mandarinbankform" type="mandarinbank/form" template="mandarinbank/form.phtml">
+            </block>
+        </reference>
+    </mandarinbank_index_index>
+</layout>
