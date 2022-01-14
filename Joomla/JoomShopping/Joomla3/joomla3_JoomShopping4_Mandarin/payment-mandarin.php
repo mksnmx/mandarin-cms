@@ -46,6 +46,7 @@ switch($r['status']){
 	case 'success':
 		
 		$stmt1 = $db->prepare('UPDATE `'.$dbprefix.'jshopping_orders` SET
+			`order_created`="1",
 			`order_status`="6",
 			`invoice_date`="'.date('Y-m-d H:i:s').'",
 			`product_stock_removed`="1"
