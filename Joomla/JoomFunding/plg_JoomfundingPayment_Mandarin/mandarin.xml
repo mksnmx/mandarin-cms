@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension version="3.10" type="plugin" group="joomfundingpayment" method="upgrade">
-    <name>JoomFundingPayment - Mandarin</name>
+<extension version="3.10" type="plugin" group="jomfundingpayment" method="upgrade">
+    <name>jomfundingpayment - Mandarin</name>
     <author>MandarinLtd</author>
     <creationDate>January 2022</creationDate>
     <authorEmail>admin@mandarin.io</authorEmail>
