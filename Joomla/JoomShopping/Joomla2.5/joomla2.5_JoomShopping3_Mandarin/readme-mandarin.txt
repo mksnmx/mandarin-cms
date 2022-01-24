@@ -1,19 +1,19 @@
-!Êîíôèãóğàöèÿ Mandarin PM
-1. Çàêèäûâàåì àğõèâ â êîğåíü ñàéòà /
+!ĞšĞ¾Ğ½Ñ„Ğ¸Ğ³ÑƒÑ€Ğ°Ñ†Ğ¸Ñ Mandarin PM
+1. Ğ—Ğ°ĞºĞ¸Ğ´Ñ‹Ğ²Ğ°ĞµĞ¼ Ğ°Ñ€Ñ…Ğ¸Ğ² Ğ² ĞºĞ¾Ñ€ĞµĞ½ÑŒ ÑĞ°Ğ¹Ñ‚Ğ° /
 2. %domain%/install-mandarin.php
-3. Óäàëèòü %domain%/install-mandarin.php
-4. %domain$/administrator/ Components > Joomshoping > Options. Payments ("ñïîñîá îïëàòû").
-5. Êëèêàåì íà MandarinBank, âàæíà âòîğàÿ çàêëàäêà
+3. Ğ£Ğ´Ğ°Ğ»Ğ¸Ñ‚ÑŒ %domain%/install-mandarin.php
+4. %domain$/administrator/ Components > Joomshoping > Options. Payments ("ÑĞ¿Ğ¾ÑĞ¾Ğ± Ğ¾Ğ¿Ğ»Ğ°Ñ‚Ñ‹").
+5. ĞšĞ»Ğ¸ĞºĞ°ĞµĞ¼ Ğ½Ğ° MandarinBank, Ğ²Ğ°Ğ¶Ğ½Ğ° Ğ²Ñ‚Ğ¾Ñ€Ğ°Ñ Ğ·Ğ°ĞºĞ»Ğ°Ğ´ĞºĞ°
 	Merchant ID: ...
 	Merchant Secret: ...
 6. Save & Close.
 
-!Ïàğàìåòğû äëÿ ïëàò¸æíîé ñèñòåìû
+!ĞŸĞ°Ñ€Ğ°Ğ¼ĞµÑ‚Ñ€Ñ‹ Ğ´Ğ»Ñ Ğ¿Ğ»Ğ°Ñ‚Ñ‘Ğ¶Ğ½Ğ¾Ğ¹ ÑĞ¸ÑÑ‚ĞµĞ¼Ñ‹
 callbackURL /payment-mandarin.php
 returnURL   /result-mandarin.php
 
-!Òåñòèğîâàíèå
-1. Ïåğåõîäèì ïî %domain%/
-2. Main Menu > Ïåğåõîäèì ïî Íàçâàíèş ïğîäóêòà > Add to cart. 
-3. Ïåğåõîäèì â ìåíş Main menu > checkout. Òàì çàïîëíÿåì ğåêâèçèòû, îïëà÷èâàåì.
-4. Ïğîâåğÿåì ñòàòóñ çàêàçà â Admin > Components > JoomShopping > Orders.
+!Ğ¢ĞµÑÑ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ğµ
+1. ĞŸĞµÑ€ĞµÑ…Ğ¾Ğ´Ğ¸Ğ¼ Ğ¿Ğ¾ %domain%/
+2. Main Menu > ĞŸĞµÑ€ĞµÑ…Ğ¾Ğ´Ğ¸Ğ¼ Ğ¿Ğ¾ ĞĞ°Ğ·Ğ²Ğ°Ğ½Ğ¸Ñ Ğ¿Ñ€Ğ¾Ğ´ÑƒĞºÑ‚Ğ° > Add to cart. 
+3. ĞŸĞµÑ€ĞµÑ…Ğ¾Ğ´Ğ¸Ğ¼ Ğ² Ğ¼ĞµĞ½Ñ Main menu > checkout. Ğ¢Ğ°Ğ¼ Ğ·Ğ°Ğ¿Ğ¾Ğ»Ğ½ÑĞµĞ¼ Ñ€ĞµĞºĞ²Ğ¸Ğ·Ğ¸Ñ‚Ñ‹, Ğ¾Ğ¿Ğ»Ğ°Ñ‡Ğ¸Ğ²Ğ°ĞµĞ¼.
+4. ĞŸÑ€Ğ¾Ğ²ĞµÑ€ÑĞµĞ¼ ÑÑ‚Ğ°Ñ‚ÑƒÑ Ğ·Ğ°ĞºĞ°Ğ·Ğ° Ğ² Admin > Components > JoomShopping > Orders.

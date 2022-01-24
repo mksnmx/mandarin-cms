@@ -1,6 +1,6 @@
 <?php
 if(isset($_GET['orderId'])&&isset($_GET['type'])&&$_GET['type'] === 'pay'&&isset($_GET['status'])):
-
+/*
 include_once($_SERVER{'DOCUMENT_ROOT'}.'/configuration.php');
 
 $config = new JConfig();
@@ -23,7 +23,7 @@ $stmt1 = $db->prepare('UPDATE `'.$dbprefix.'jshopping_orders` SET
 	
 	WHERE `order_id`=? LIMIT 1');
 $stmt1->execute(array($order_id));
-
+*/
 
 $return = 'Location: '.'/index.php?option=com_jshopping&controller=checkout&task=step7&act=return&js_paymentclass=pm_mandarin';
 
