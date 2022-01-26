@@ -1,19 +1,21 @@
 <?php
+/**
+ * @package      VirtueMart
+ * @subpackage   Plugins
+ * @author       MandarinLtd
+ * @copyright    Copyright (C) 2022 <admin@mandarin.io>. All rights reserved.
+ * @license      GNU General Public License version 2 or later; see LICENSE.txt
+ */
 
-/*if (!defined('_VALID_MOS') && !defined('_JEXEC')){
-    die('Direct Access to ' . basename(__FILE__) . ' is not allowed.');
-}*/
-
-/*if (!class_exists ('vmPSPlugin')) {
-    require(JPATH_VM_PLUGINS . DS . 'vmpsplugin.php');
-}*/
+// no direct access
+defined('_JEXEC') or die;
 if (!class_exists('vmPSPlugin'))
 require(VMPATH_PLUGINLIBS . DS . 'vmpsplugin.php');
 
 class plgVmPaymentMandarinbank extends vmPSPlugin
 {   
-    function __construct(&$subject, $config)
-    {
+    function __construct(& $subject, $config) {
+        
         parent::__construct($subject, $config);  
         
         $this->_loggable   = true;
@@ -229,21 +231,21 @@ class plgVmPaymentMandarinbank extends vmPSPlugin
         
         if (!class_exists('VirtueMartModelOrders'))
             require(JPATH_VM_ADMINISTRATOR . DS . 'models' . DS . 'orders.php');
-
-        $orderid = $_POST['orderId'];
+        $p = filter_input_array(INPUT_POST);
+        $orderid = $p['orderId'];
         $payment = $this->getDataByOrderId($orderid);
         $method = $this->getVmPluginMethod($payment->virtuemart_paymentmethod_id);        
         $amount = ceil($payment->payment_order_total*100)/100;
 
         if ($method){
             $this->wrlog('method OK');
-            if (count($_POST) && isset($_POST['sign'])) {
+            if (count($p) && isset($p['sign'])) {
                
-                if ($_POST['status'] == 'success' && $method->merchant_id == $_POST['merchantId'] ) { 
+                if ($p['status'] == 'success' && $method->merchant_id == $p['merchantId'] ) { 
   
                     $secret_key = $method->secret;         
 
-                    $request = $_POST;
+                    $request = $p;
                     $request_sign = $request['sign'];
                     unset($request['sign']);
 
