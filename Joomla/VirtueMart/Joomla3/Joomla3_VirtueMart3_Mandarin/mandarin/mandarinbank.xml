@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension version="3.4" type="plugin" method="upgrade" group="vmpayment">
+    <name>MandarinBank</name>
+    <creationDate>Desember 2016</creationDate>
+    <author>MandarinBank</author>
+    <authorUrl>http://mandarinbank.com</authorUrl>
+    <copyright>Copyright (C) 2016 mandarinbank.com</copyright>
+    <license></license>
+    <version>1.0</version>
+    <description>MandarinBank</description>
+	
+	<files>
+		<filename plugin="mandarinbank">mandarinbank.php</filename>
+	</files>
+	
+    <vmconfig>
+        <fields name="params">       		
+			<fieldset name="payment" addfieldpath="/administrator/components/com_virtuemart/fields">			
+				<field name="merchant_id" type="text" size="100" label="ID кошелька" description="merchant_id"/>		
+				<field name="secret" type="text" size="100" label="Секретный ключ" description="secret"/>
+				<field type="vmorderstate" name="status_success" scope="com_virtuemart" default="C" label="Статус заказа в случае успеха:" description="Успешно" />
+				<field type="vmorderstate" name="status_canceled" scope="com_virtuemart" default="X" label="Статус заказа в случае неудачи:" description="Отмена" />
+			</fieldset>
+        </fields>
+    </vmconfig>
+
+</extension>
