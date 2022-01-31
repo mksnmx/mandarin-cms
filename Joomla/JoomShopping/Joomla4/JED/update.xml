@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<updates>
+    <update>
+        <name>joomshoppingpayment - Mandarin Payment integration for JoomShopping</name>
+        <description>joomshoppingpayment - Mandarin Payment integration is a plugin that provides an ability to make payments via Mandarin by simple form.</description>
+        <element>plg_joomshoppingpayment</element>
+        <type>plugin</type>
+        <client>0</client>
+        <version>1.0</version>
+        <infourl title="joomshoppingpayment - Mandarin">https://github.com/mksnmx/mandarin-cms/tree/main/Joomla/JoomShopping/Joomla4/JED</infourl>
+        <downloads>
+            <downloadurl type="full" format="ZIP">https://github.com/mksnmx/mandarin-cms/tree/main/Joomla/JoomShopping/Joomla4/JED/JoomShoppingPayment-Mandarin.zip</downloadurl>
+        </downloads>
+        <tags>
+            <tag>stable</tag>
+        </tags>
+        <targetPlatform name="joomla" version="4"/>
+    </update>
+</updates>

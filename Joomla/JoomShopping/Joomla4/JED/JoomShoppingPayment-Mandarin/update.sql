@@ -1,0 +1,3 @@
+INSERT INTO `#__jshopping_payment_method` (`payment_code`, `payment_class`, `scriptname`, `payment_publish`, `payment_ordering`, `payment_params`, `payment_type`, `price`, `price_type`, `tax_id`, `image`, `show_descr_in_email`, `show_bank_in_order`, `order_description`, `name_en-GB`, `description_en-GB`, `name_de-DE`, `description_de-DE`) VALUES ('mandarin', 'pm_mandarin', 'pm_mandarin', 1, 1, '{"mid":"1","msec":"111","transaction_end_status":"2","transaction_pending_status":"1","transaction_failed_status":"3"}', 2, '0.00', 1, 1, 'https://secure.mandarinpay.com/favicon.ico', 0, 1, '', 'MandarinBank', '', 'MandarinBank', '');
+UPDATE `#__jshopping_payment_method` SET `name_ru-RU` = 'MandarinBank' WHERE `payment_class` = 'pm_mandarin';
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="4" type="plugin" group="joomshoppingpayment" method="upgrade">
+    <name>joomshoppingpayment - Mandarin Payment integration for JoomShopping</name>
+    <author>MandarinLtd</author>
+    <creationDate>January 2022</creationDate>
+    <authorEmail>admin@mandarin.io</authorEmail>
+    <authorUrl>https://mandarin.io</authorUrl>
+    <copyright>2022 MandarinLtd</copyright>
+    <license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+    <version>1.0</version>
+    <description>joomshoppingpayment - Mandarin Payment integration is a plugin that provides an ability to make payments via Mandarin by simple form.</description>
+    <updateservers>
+        <server type="extension" name="UpdateServer">https://github.com/mksnmx/mandarin-cms/tree/main/Joomla/JoomShopping/Joomla4/JED/update.xml</server>
+    </updateservers>
+</extension>
+
+

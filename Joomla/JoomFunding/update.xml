@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <updates>
     <update>
-        <name>JoomFundingPayment - Mandarin</name>
-        <description>JoomfundingPayment - Mandarin is a plugin that provides an ability to make payments via Mandarin by simple form.</description>
-        <element>plg_JoomfundingPayment_Mandarin</element>
+        <name>joomfundingpayment - Mandarin Payment integration for JoomFunding</name>
+        <description>joomfundingpayment - Mandarin Payment integration is a plugin that provides an ability to make payments via Mandarin by simple form.</description>
+        <element>plg_joomfundingpayment</element>
         <type>plugin</type>
         <client>0</client>
         <version>1.0</version>

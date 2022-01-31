@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <extension version="4" type="plugin" method="upgrade" group="vmpayment">
-    <name>vmpayment - Mandarin</name>
+    <name>vmpayment - Mandarin Payment integration for VirtueMart</name>
     <creationDate>January 2022</creationDate>
     <author>MandarinLtd</author>
     <authorEmail>admin@mandarin.io</authorEmail>
@@ -8,7 +8,7 @@
     <copyright>2022 MandarinLtd</copyright>
     <license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
     <version>1.0</version>
-    <description>VirtuemartPayment - Mandarin is a plugin that provides an ability to make payments via Mandarin by simple form.</description>
+    <description>vmpayment - Mandarin Payment integration is a plugin that provides an ability to make payments via Mandarin by simple form.</description>
 	
 	<files>
 		<filename plugin="mandarinbank">mandarinbank.php</filename>
