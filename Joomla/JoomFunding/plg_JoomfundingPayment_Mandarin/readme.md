@@ -1,4 +1,4 @@
-![Mandarin.io](../../../assets/images/Payments_by_color.png)
+![Mandarin.io](../../../assets/images/Payments_by_color.png#gh-light-mode-only)
 
 <b>Mandarin Payment integration for JoomShopping</b>
 
