@@ -1,11 +1,11 @@
 ![Mandarin.io](../../../assets/images/Payments_by_color.png#gh-light-mode-only)
 ![Mandarin.io](../../../assets/images/Payments_by_color_bl.png#gh-dark-mode-only)
 
-<b>Mandarin Payment integration for JoomFunding</b>
+<b>Mandarin Payment integration for Virtuemart</b>
 
-Позволяет принимать донаты компонента JoomFunding через платежный шлюз Mandarin.
+Позволяет принимать оплату корзины компонента VirtueMart через платежный шлюз Mandarin.
 
-Плагин устанавливается как расширение Joomla -> Plugins.
+Плагин устанавливается как расширение Joomla -> Plugins. В административной части компонента Vitruemart, добавить метод оплаты, выбрать процесс VM-mandarinbank, настроить модуль в соответствии со своим аккаунтом (ID кошелька и секретный ключ).
 
 [Mandarin](https://mandarin.io) – универсальное решение для работы с онлайн-платежами. API Mandarin построено на REST-принципах. С помощью него вы сможете принимать платежи с банковской карты, получать токен карты и использовать его для повторных списаний, делать возвраты, производить выплаты на карты, используя множество опций.
 
