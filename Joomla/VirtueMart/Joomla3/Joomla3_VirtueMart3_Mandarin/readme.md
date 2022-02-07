@@ -11,8 +11,8 @@
 3. Зайти в админку, добавить метод оплаты, выбрать процесс VM-mandarinbank, настроить модуль в соответствии со своим аккаунтом (ID кошелька и секретный ключ)
 
 На сайте Платежной системы необходимо в личном кабинете прописать URL'ы:
-a) callbackUrl -> http://SITE_NAME.VASH/index.php?option=com_virtuemart&view=pluginresponse&task=pluginnotification&pm=mandarinbank&tmpl=component
-б) returnUrl  -> задавать не нужно, переопределится системой Joomla
+* callbackUrl -> http://SITE_NAME.VASH/index.php?option=com_virtuemart&view=pluginresponse&task=pluginnotification&pm=mandarinbank&tmpl=component
+* returnUrl  -> задавать не нужно, переопределится системой Joomla
 
 "Сохранить"
 
