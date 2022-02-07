@@ -1,11 +1,20 @@
-![Mandarin.io](../../../assets/images/Payments_by_color.png#gh-light-mode-only)
-![Mandarin.io](../../../assets/images/Payments_by_color_bl.png#gh-dark-mode-only)
+![Mandarin.io](../../../../assets/images/Payments_by_color.png#gh-light-mode-only)
+![Mandarin.io](../../../../assets/images/Payments_by_color_bl.png#gh-dark-mode-only)
 
 <b>Mandarin Payment integration for Virtuemart</b>
 
 Позволяет принимать оплату корзины компонента VirtueMart через платежный шлюз Mandarin.
 
-Плагин ([mandarin.zip](https://github.com/mksnmx/mandarin-cms/raw/main/Joomla/VirtueMart/Joomla4/mandarin.zip)) устанавливается как расширение Joomla -> Plugins. В административной части компонента Vitruemart, добавить метод оплаты, выбрать процесс VM-mandarinbank, настроить модуль в соответствии со своим аккаунтом (ID кошелька и секретный ключ).
+#Установка
+1. Раскрыть архив Joomla3_VirtueMart3_Mandarin.zip
+2. Зайти в админ панели "Расширения/менеджер расширений", выбрать архив mandarin.zip у себя на компьютере и установить его.
+3. Зайти в админку, добавить метод оплаты, выбрать процесс VM-mandarinbank, настроить модуль в соответствии со своим аккаунтом (ID кошелька и секретный ключ)
+
+На сайте Платежной системы необходимо в личном кабинете прописать URL'ы:
+* callbackUrl -> http://SITE_NAME.VASH/index.php?option=com_virtuemart&view=pluginresponse&task=pluginnotification&pm=mandarinbank&tmpl=component
+* returnUrl  -> задавать не нужно, переопределится системой Joomla
+
+"Сохранить"
 
 [Mandarin](https://mandarin.io) – универсальное решение для работы с онлайн-платежами. API Mandarin построено на REST-принципах. С помощью него вы сможете принимать платежи с банковской карты, получать токен карты и использовать его для повторных списаний, делать возвраты, производить выплаты на карты, используя множество опций.
 
