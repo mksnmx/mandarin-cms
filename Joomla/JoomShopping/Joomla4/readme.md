@@ -5,7 +5,7 @@
 
 Позволяет принимать оплату корзины компонента JoomShopping через платежный шлюз Mandarin.
 
-На странице Компоненты - JoomShopping -> Установка и обновление выбираем и устанавливаем JoomShoppingPayment-Mandarin.zip
+На странице Компоненты - JoomShopping -> Установка и обновление выбираем и устанавливаем [JoomShoppingPayment-Mandarin.zip](https://github.com/mksnmx/mandarin-cms/raw/main/Joomla/JoomShopping/Joomla4/JoomShoppingPayment-Mandarin.zip)
 
 В настройках плагина Компоненты - JoomShopping -> Опции -> Способы оплаты на вкладке Конфигурация вводим Ваши данные MerchantId и Secret из Личного кабинета Mandarin, а так же при необходимости поправить здесь же статусы заказов, если они менялись в магазине.
 
