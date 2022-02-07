@@ -4,14 +4,14 @@ Plugin Name: MandarinPay
 Plugin URI: http://www.mandarinbank.com/
 Description: Extends WooCommerce by Adding the MandarinPay Gateway.
 Version: 1.0
-Author: vuchastyi
+Author: MandarinLtd
 */
 
 add_action( 'plugins_loaded', 'mandarin_pay_init', 0 );
 function mandarin_pay_init() {
 	if ( ! class_exists( 'WC_Payment_Gateway' ) ) return;
 	
-	if(!defined('ABSPATH'))exit;
+	//if(!defined('ABSPATH'))exit;
 
 	class Mandarin_Pay extends WC_Payment_Gateway {
 		function __construct(){
@@ -28,7 +28,7 @@ function mandarin_pay_init() {
 			foreach ( $this->settings as $setting_key => $value ) {
 				$this->$setting_key = $value;
 			}
-			
+			add_action('woocommerce_thankyou', array($this, 'successful_thankyou'));
 			add_action('valid-mandarin-pay-ipn-reques', array($this, 'successful_request') );
 			add_action('woocommerce_receipt_' . $this->id, array($this, 'receipt_page'));
 			add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
@@ -105,12 +105,22 @@ function mandarin_pay_init() {
 			$order = new WC_Order( $order_id );
 			
 			$out_summ = number_format($order->order_total, 2, '.', '');
-
+                        
+                        if('' == get_option('permalink_structure')){
+                            $callback = site_url().'/?wc-api=mandarin_pay';
+                            $return = $this->get_return_url( $order );
+                        }else{
+                            $callback = site_url().'/wc-api/mandarin_pay/';
+                            $return = $this->get_return_url( $order );
+                        }
+                        
 			$f = $this->generate_formpub($this->secret,array(
+                                        'callbackUrl' => $callback,
 					'merchantId' => $this->merchantId,
 					'price' => $out_summ,
 					'orderId' => $order_id,
-					'email'=> $order->billing_email
+					'customer_email' => $order->billing_email,
+                                        'returnUrl' => $return
 				)
 			);
 			
@@ -137,8 +147,7 @@ function mandarin_pay_init() {
 		}
 		
 		function check_ipn_response(){
-			global $woocommerce;
-			
+                    
 			if (isset($_POST['status']) && $_POST['status'] == 'success'){
 				$hash_arr = array();
 				foreach($_POST as $key => $h_var){
@@ -170,19 +179,31 @@ function mandarin_pay_init() {
 		
 		function successful_request($posted){
 			global $woocommerce;
-
+                        file_put_contents('log.txt', json_encode($woocommerce->cart));
 			$inv_id = $posted['orderId'];
 			$order = new WC_Order($inv_id);
 			
 			if ($order->status == 'completed'){
-				exit;
+                            exit;
 			}
-			
-			$order->add_order_note(__('Платеж успешно завершен.', 'woocommerce'));
-			$order->payment_complete();
-			$order->update_status('on-hold', __('Платеж успешно оплачен', 'woocommerce'));
 			$woocommerce->cart->empty_cart();
+			$order->add_order_note(__('Платеж успешно завершен.', 'woocommerce'));
+			$order->update_status('completed', __('Платеж успешно оплачен', 'woocommerce'));
+			$order->payment_complete();
+                        		
 			exit;
+		}
+                function successful_thankyou( $order_id ){
+			global $woocommerce;
+                        
+                        if ( ! $order_id ) return;
+                        
+			$order = new WC_Order($order_id);
+                        
+			if ($order->status == 'completed'){
+                            $woocommerce->cart->empty_cart();
+			}
+                        
 		}
 
 	}
