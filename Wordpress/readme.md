@@ -5,7 +5,7 @@
 
 Позволяет принимать оплату корзины через платежный шлюз Mandarin.
 
-1. Распакуйте архив в корень сайта
+1. Распакуйте архив Wordpress_Woocommerce_Mandarin_new.zip в корень сайта
 2. Панель администратора -> Плагины -> MandarinPay -> Activate
 3. Панель администратора -> Плагины -> MandarinPay -> Настроить
 4. Укажите Merchant Id и Merchant Secret
