@@ -1,14 +1,29 @@
-![Mandarin.io](../assets/images/Payments_by_color.png#gh-light-mode-only)
-![Mandarin.io](../assets/images/Payments_by_color_bl.png#gh-dark-mode-only)
+![Mandarin.io](../../../assets/images/Payments_by_color.png#gh-light-mode-only)
+![Mandarin.io](../../../assets/images/Payments_by_color_bl.png#gh-dark-mode-only)
 
-<b>Mandarin Payment integration for WordPress (WooCommerce)</b>
+<b>Mandarin Payment integration for JoomShopping</b>
 
-Позволяет принимать оплату корзины через платежный шлюз Mandarin.
+Позволяет принимать оплату корзины компонента JoomShopping через платежный шлюз Mandarin.
 
-1. Распакуйте архив в корень сайта
-2. Панель администратора -> Плагины -> MandarinPay -> Activate
-3. Панель администратора -> Плагины -> MandarinPay -> Настроить
-4. Укажите Merchant Id и Merchant Secret
+!Конфигурация Mandarin PM
+1. Закидываем архив в корень сайта /
+2. %domain%/install-mandarin.php
+3. Удалить %domain%/install-mandarin.php
+4. %domain$/administrator/ Components > Joomshoping > Options. Payments ("способ оплаты").
+5. Кликаем на MandarinBank, важна вторая закладка
+	Merchant ID: ...
+	Merchant Secret: ...
+6. Save & Close.
+
+!Параметры для платёжной системы
+callbackURL /payment-mandarin.php
+returnURL   /result-mandarin.php
+
+!Тестирование
+1. Переходим по %domain%/
+2. Main Menu > Переходим по Названию продукта > Add to cart. 
+3. Переходим в меню Main menu > checkout. Там заполняем реквизиты, оплачиваем.
+4. Проверяем статус заказа в Admin > Components > JoomShopping > Orders.
 
 [Mandarin](https://mandarin.io) – универсальное решение для работы с онлайн-платежами. API Mandarin построено на REST-принципах. С помощью него вы сможете принимать платежи с банковской карты, получать токен карты и использовать его для повторных списаний, делать возвраты, производить выплаты на карты, используя множество опций.
 

@@ -1,14 +1,9 @@
 ![Mandarin.io](../assets/images/Payments_by_color.png#gh-light-mode-only)
 ![Mandarin.io](../assets/images/Payments_by_color_bl.png#gh-dark-mode-only)
 
-<b>Mandarin Payment integration for WordPress (WooCommerce)</b>
+<b>Mandarin Payment integration for Joomla Components</b>
 
-Позволяет принимать оплату корзины через платежный шлюз Mandarin.
-
-1. Распакуйте архив в корень сайта
-2. Панель администратора -> Плагины -> MandarinPay -> Activate
-3. Панель администратора -> Плагины -> MandarinPay -> Настроить
-4. Укажите Merchant Id и Merchant Secret
+Позволяет принимать оплату через платежный шлюз Mandarin.
 
 [Mandarin](https://mandarin.io) – универсальное решение для работы с онлайн-платежами. API Mandarin построено на REST-принципах. С помощью него вы сможете принимать платежи с банковской карты, получать токен карты и использовать его для повторных списаний, делать возвраты, производить выплаты на карты, используя множество опций.
 
