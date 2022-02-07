@@ -179,7 +179,6 @@ function mandarin_pay_init() {
 		
 		function successful_request($posted){
 			global $woocommerce;
-                        file_put_contents('log.txt', json_encode($woocommerce->cart));
 			$inv_id = $posted['orderId'];
 			$order = new WC_Order($inv_id);
 			
