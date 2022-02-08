@@ -1,9 +1,11 @@
 ![Mandarin.io](../assets/images/Payments_by_color.png#gh-light-mode-only)
 ![Mandarin.io](../assets/images/Payments_by_color_bl.png#gh-dark-mode-only)
 
+Mandarin Payment integration for OpenCart
+
 Позволяет принимать оплату через платежный шлюз Mandarin.
 
-1. Скопировать содержимое архива [mandarin.zip](mandarin.zip) в корень сайта
+1. Скопировать содержимое архива [mandarin.zip](https://github.com/mksnmx/mandarin-cms/raw/main/OpenCart/mandarin.zip) в корень сайта
 2. Заходим в админ панель, переходим в Extensions/Extensions, в центральной части выбираем Payments.
 3. Находим MandarinBank, устанавливаем.
 4. Нажимаем Edit переходим и заполняем ID merchant (Merchant id) и Secret code (Secret), включаем модуль.
