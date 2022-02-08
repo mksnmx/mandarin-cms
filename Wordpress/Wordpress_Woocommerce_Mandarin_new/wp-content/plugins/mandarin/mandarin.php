@@ -1,11 +1,17 @@
 <?php
 /*
-Plugin Name: MandarinPay
-Plugin URI: http://www.mandarinbank.com/
-Description: Extends WooCommerce by Adding the MandarinPay Gateway.
-Version: 1.0
-Author: MandarinLtd
-*/
+ * Plugin Name:       Mandarin-Payment-integration
+ * Plugin URI:        https://github.com/mksnmx/mandarin-cms/tree/main/Wordpress
+ * Description:       Allows you to accept shopping cart payments through the Mandarin payment gateway.
+ * Version:           1.0
+ * Author:            MandarinLtd
+ * Author URI:        https://mandarin.io
+ * License:           GPL v2 or later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Update URI:        https://github.com/mksnmx/mandarin-cms/tree/main/Wordpress
+ * Text Domain:       my-basics-plugin
+ * Domain Path:       /languages
+ */
 
 add_action( 'plugins_loaded', 'mandarin_pay_init', 0 );
 function mandarin_pay_init() {
