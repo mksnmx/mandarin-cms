@@ -5,8 +5,8 @@
 
 Разработаны 2 модуля:
 
-1. mandarinbank.mandarinbank - Платежная система MandarinPay - оплата производится на странице оплаты Mandarin;
-2. mandarinbank.pay - Встроенная платёжная страница MandarinPay с hosted fields - форма для оплаты встраивается в страницу заказа Битрикс.
+1. [mandarinbank.mandarinbank](https://github.com/mksnmx/mandarin-cms/tree/main/Bitrix/mandarinbank.mandarinbank) - Платежная система MandarinPay - оплата производится на странице оплаты Mandarin;
+2. [mandarinbank.pay](https://github.com/mksnmx/mandarin-cms/tree/main/Bitrix/mandarinbank.pay) - Встроенная платёжная страница MandarinPay с hosted fields - форма для оплаты встраивается в страницу заказа Битрикс.
 
 [Mandarin](https://mandarin.io) – универсальное решение для работы с онлайн-платежами. API Mandarin построено на REST-принципах. С помощью него вы сможете принимать платежи с банковской карты, получать токен карты и использовать его для повторных списаний, делать возвраты, производить выплаты на карты, используя множество опций.
 
