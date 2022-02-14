@@ -1,7 +1,7 @@
-![Mandarin.io](../../../assets/images/Payments_by_color.png#gh-light-mode-only)
-![Mandarin.io](../../../assets/images/Payments_by_color_bl.png#gh-dark-mode-only)
+![Mandarin.io](../assets/images/Payments_by_color.png#gh-light-mode-only)
+![Mandarin.io](../assets/images/Payments_by_color_bl.png#gh-dark-mode-only)
 
-<b>Mandarin Payment integration for CMS MODX MiniShop2</b>
+<b>Mandarin Payment integration for CMS MODX</b>
 
 Позволяет принимать оплату через платежный шлюз Mandarin.
 
