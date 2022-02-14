@@ -10,13 +10,13 @@
 
 Имя - mandarin, описание - Платёжная система, код ниже (merchant-id и secret вписываем свои, кавычки аккуратно оставляем):
 
-`<?php`
-`$output = '';`
-`$mid="merchant-id";`
-`$msec='secret';`
-`require_once $modx->getOption('core_path')."components/mandarin.php";`
-`return $output;`
-`// конец кода`
+<?php\n
+$output = '';\n
+$mid="merchant-id";\n
+$msec='secret';\/n
+require_once $modx->getOption('core_path')."components/mandarin.php";\\n
+return $output;//n
+// конец кода\\/n
 
 Ресурсы - Спасибо! (12)
 В тексте ресурса в самом начале добавляем одну строку:
