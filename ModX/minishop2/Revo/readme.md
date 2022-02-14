@@ -7,7 +7,7 @@
 
 * Установка модуля
 
-1. Распакуйте архив [mandarin.zip](https://github.com/mksnmx/mandarin-cms/raw/main/ModX/Revo/mandarin.zip);
+1. Распакуйте архив [mandarin.zip](https://github.com/mksnmx/mandarin-cms/raw/main/ModX/minishop2/Revo/mandarin.zip);
 2. Скопируйте из архива каталог assets и core в корень системы MODX.
 3. В административной панели Modx пройдите в раздел <strong>"Приложения" -> "Minishop2" -> "Настройки" -> "Способы оплаты" -> "Создать"</strong>;
 4. Заполните все поля, в поле Класс-обработчик указать <strong>Mandarin</strong>.
