@@ -4,11 +4,6 @@ function print_p($a){echo'<pre>';print_r($a);echo'</pre>';}
 
 $rurl = $rurl ? $rurl : 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
-//$dbprefix = $modx->getOption(xPDO::OPT_TABLE_PREFIX);
-
-//$result = $modx->query('SELECT * FROM `'.$dbprefix.'shopkeeper3_config` WHERE `setting` = "payments" LIMIT 1');
-//$row = $result->fetch(PDO::FETCH_ASSOC);
-
 $payment_price = isset($_SESSION['shk_lastOrder']['price']) ? number_format(floatval($_SESSION['shk_lastOrder']['price']),2,'.','') : '';
 
 
@@ -31,7 +26,7 @@ function generate_form($secret, $fields){
 	$form = $form . '<input type="hidden" name="sign" value="'.$sign.'"/>';
 	return $form;
 }
-echo '<form action="https://secure.mandarinpay.com/Pay" method="POST">';
+echo '<form id="paymentform" action="https://secure.mandarinpay.com/Pay" method="POST">';
 echo generate_form($msec,array(
    "email" => $_SESSION['shk_lastOrder']['email'],
    "merchantId" => $mid,
@@ -42,3 +37,6 @@ echo generate_form($msec,array(
 ));
 
 echo '<input type="submit" value="Оплатить" /></form>';
+$modx->regClientHTMLBlock('
+<script type="text/javascript">document.getElementById(\'paymentform\').submit();</script>
+');
