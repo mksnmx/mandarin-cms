@@ -5,9 +5,7 @@
 
 Позволяет принимать оплату через платежный шлюз Mandarin.
 
-Распакуйте архив [mandarin.zip](https://github.com/mksnmx/mandarin-cms/raw/main/ModX/Shopkeeper/Revo/mandarin.zip);
-
-Распакуйте архив в корень системы MODX.
+Распакуйте архив [mandarin.zip](https://github.com/mksnmx/mandarin-cms/raw/main/ModX/Shopkeeper/Revo/mandarin.zip) в корень системы MODX.
 
 В левой части админки Элементы - Сниппеты, на Сниппеты правой кнопкой мыши - новый сниппет
 
