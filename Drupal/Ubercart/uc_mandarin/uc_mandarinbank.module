@@ -1,0 +1,198 @@
+<?php
+
+function uc_mandarinbank_method_card($option, &$arg1)
+{
+    $mb_form = array();
+    if ($option == 'settings') {
+        $mb_form['mandarin_id'] = array(
+            '#type' => 'textfield',
+            '#title' => t('Идентификатор кассы'),
+            '#default_value' => variable_get('mandarin_id', ''),
+            '#description' => t('Идентификатор кассы на сайте Mandarin (Merchant Id)'),
+            '#required' => TRUE,
+        );
+        $mb_form['mandarin_secret_key'] = array(
+            '#type' => 'textfield',
+            '#title' => t('Секретный ключ'),
+            '#default_value' => variable_get('mandarin_secret_key', ''),
+            '#description' => t('Секретный ключ безопасности (Secret).'),
+            '#required' => TRUE,
+        );
+    }
+    return $mb_form;
+}
+
+function uc_mandarinbank_menu()
+{
+    $items['uc_mandarinbank/result'] = array(
+        'title' => 'Internal Data',
+        'page callback' => 'uc_mandarinbank_result_payment',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK
+    );
+    $items['uc_mandarinbank/return'] = array(
+        'title' => 'mandarinbank_return',
+        'page callback' => 'uc_mandarinbank_payment_end',
+        'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK
+    );
+
+    return $items;
+}
+
+
+function uc_mandarinbank_form_alter(&$form, $state, $form_id)
+{
+    if ($form_id == 'uc_cart_checkout_review_form') {
+        if (($orderId = intval($_SESSION['cart_order'])) > 0) {
+            if (empty($state['post'])) {
+                $order = uc_order_load($orderId);
+                if ($order->payment_method == 'mandarinbank') {
+                    unset($form['submit']);
+                    $form['#prefix'] = '<table style="display: inline;"><tr><td>';
+                    $uc_form = 'uc_mandarinbank_form';
+                    $drupal_form = drupal_get_form($uc_form, $order);
+                    $form['#suffix'] = '</td><td>' . drupal_render($drupal_form) . '</td></tr></table>';
+                }
+            }
+        }
+    }
+}
+
+function uc_mandarinbank_uc_payment_method()
+{
+    $path = base_path() . drupal_get_path('module', 'uc_mandarinbank');
+    $method[] = array(
+        'id' => 'mandarinbank',
+        'name' => t('Mandarin Bank'),
+        'title' => t('<strong>Mandarin Bank</strong>') . '<br /><img src="' . $path . '/pic-mandarin.jpg" width=200px',
+        'desc' => t('Оплатить с помощью Mandarin Bank.'),
+        'callback' => 'uc_mandarinbank_method_card',
+        'weight' => 1,
+        'checkout' => TRUE,
+        'backend' => TRUE,
+    );
+    return $method;
+}
+
+function uc_mandarinbank_form()
+{
+    $order = uc_order_load($_SESSION['cart_order']);
+    uc_order_comment_save($_SESSION['cart_order'], 0, t('Новый заказ, пользователь выбрал Mandarin Bank'), 'admin');
+    uc_order_update_status($order->order_id, 'processing');
+
+    $form = array(
+        '#id' => 'checkout',
+        '#name' => 'checkout',
+        '#method' => 'post',
+        '#action' => 'https://secure.mandarinpay.com/Pay/',
+    );
+
+    $amount = $order->order_total;
+    $data = uc_mandarinbank_get_data($order->order_id, $amount, $order);
+
+    foreach ($data as $name => $value) {
+        $form[$name] = array('#type' => 'hidden', '#value' => $value);
+    }
+    $form['submit'] = array(
+        '#type' => 'submit',
+        '#value' =>  t('Подтвердить заказ')
+    );
+    
+    return $form;
+}
+
+function uc_mandarinbank_get_data($orderId = 0, $summ = '1', $order)
+{
+    $secret_key = variable_get('mandarin_secret_key', '');
+
+    $fields = array(
+        'merchantId' => variable_get('mandarin_id', ''),
+        'customer_email' => $order->primary_email,
+        'price' => $order->order_total,
+        'orderId' => $orderId,
+        'callbackUrl' => url('uc_mandarinbank/result', array('absolute' => TRUE)),
+        'returnUrl' => url('uc_mandarinbank/return', array('absolute' => TRUE)),
+    );
+
+    //Формируем подпись
+    ksort($fields);
+    $secret_t = '';
+    foreach ($fields as $key => $val) {
+        $secret_t = $secret_t . '-' . $val;
+    }
+    $secret_t = substr($secret_t, 1) . '-' . $secret_key;
+    $signature = hash('sha256', $secret_t);
+    $fields['sign'] = $signature;
+    
+    drupal_set_message(t("Заказ №".$orderId. " успешно оформлен"));
+    
+    return $fields;
+}
+
+function uc_mandarinbank_result_payment()
+{
+    if (count($_POST) && isset($_POST['orderId']) && isset($_POST['price']) && variable_get('mandarin_id', '') == $_POST['merchantId']) {
+        if ($_POST['status'] == 'success') {
+            $request_sign = $_POST['sign'];
+            $request = $_POST;
+            $secret_key = variable_get('mandarin_secret_key', '');
+            unset($request['sign']);
+            
+            $fields = $request;
+            ksort($fields);
+            $secret_t = '';
+            foreach ($fields as $key => $val) {
+                $secret_t = $secret_t . '-' . $val;
+            }
+            $secret_t = substr($secret_t, 1) . '-' . $secret_key;
+            $signature = hash('sha256', $secret_t);
+
+            if ($request_sign != $signature) {
+                
+                drupal_set_title(t('Заказ не оплачен'));
+                $order = uc_order_load($request['orderId']);
+                $output = uc_cart_complete_sale($order);
+                uc_order_update_status($order->order_id, 'canceled');
+                uc_order_comment_save($request['orderId'], 0, t('Цифровая подпись не совпала.'), 'admin');
+                uc_order_comment_save($request['orderId'], 0, t('Заказ не был оплачен.'), 'admin');
+
+            } else {
+                
+                drupal_set_title(t('Заказ успешно оплачен'));
+                $order = uc_order_load($request['orderId']);
+                $output = uc_cart_complete_sale($order);
+                uc_order_update_status($order->order_id, 'completed');
+                t('Заказ успешно оплачен с помощью Mandarin Bank.');
+                uc_order_comment_save($request['orderId'], 0, t('Заказ успешно оплачен с помощью Mandarin Bank.'), 'admin');
+                header('Status: 200 Ok');
+            }
+        }
+    }
+    return $output;
+}
+
+function uc_mandarinbank_payment_end()
+{
+    if(!empty($_GET) && isset($_GET['status']) && isset($_GET['orderId'])){
+        $order = uc_order_load($_GET['orderId']);
+
+        if ($_GET['status'] == 'success') {
+            if (isset($_SESSION['cart_order'])) {
+                uc_cart_complete_sale($order);
+                $_SESSION['do_complete'] = TRUE;
+                drupal_set_message(t("Заказ №".$_GET['orderId']. " успешно оплачен с помощью Mandarin Bank."));
+                t("Заказ №".$_GET['orderId']. " успешно оплачен с помощью Mandarin Bank.");
+                drupal_goto('/');
+            }
+        } elseif ($_GET['status'] == 'failed') {
+            drupal_set_message(t("Заказ №".$_GET['orderId']. " не был оплачен пользователем."), 'error');
+            drupal_goto('cart');
+        } else {
+            drupal_set_message(t("Заказ №".$_GET['orderId']. " не был оплачен"), 'error');
+            drupal_goto('cart');
+        }
+    }else{
+        drupal_goto('/');
+    }
+}
