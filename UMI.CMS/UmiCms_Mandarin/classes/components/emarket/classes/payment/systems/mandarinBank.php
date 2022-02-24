@@ -1,10 +1,21 @@
 <?php
+use UmiCms\Service;
 
 class mandarinBankPayment extends payment
 {
     public function validate()
     {
         return true;
+    }
+    
+    public static function getOrderId() {
+        //$rawRequest = Service::Request()->getRawBody();
+	//$request = json_decode($rawRequest, true);
+        //Test
+        //file_put_contents('./log.txt', getRequest('orderId'));
+        //End Test
+	//return $request['orderId'];
+        return (int) getRequest('orderId');
     }
 
     private function check_sign($secret,$fields)
@@ -67,10 +78,14 @@ class mandarinBankPayment extends payment
         $params['order_id'] = $this->order->id;
         $httpScheme = getSelectedServerProtocol();
         $params['notify_url'] = $httpScheme . '://' . $_SERVER['SERVER_NAME'] . '/emarket/gateway/';
+        //$params['notify_url'] = $httpScheme . '://' . $_SERVER['SERVER_NAME'] . '/test.php';
+        $params['return_url'] = $httpScheme . '://' . $_SERVER['SERVER_NAME'] . '/emarket/personal/';
         $this->order->setPaymentStatus('initialized');
 
         $form = $this->generate_form($params['secret'], $values = array(
-            "email" => $params['email'],
+            "customer_email" => $params['email'],
+            "callbackUrl" => $params['notify_url'],
+            "returnUrl" => $params['return_url'],
             "merchantId" => $params['merchantid'],
             "orderId" => $params['order_id'],
             "price" => $sum,
@@ -89,18 +104,28 @@ class mandarinBankPayment extends payment
 
     public function poll()
     {
-        $buffer = outputBuffer::current();
-        $buffer->clear();
-        $buffer->contentType("text/plain");
-
+        //$rawRequest = Service::Request()->getRawBody();
+	//$request = json_decode($rawRequest, true);
+        
+        $order = $this->order;
+//file_put_contents('./log.txt', '1');
+        $buffer = Service::Response()->getCurrentBuffer();
+//file_put_contents('./log.txt', '2');
         if (!$this->checkSignature()) {
             $buffer->push("failed");
             $buffer->end();
         }
+//file_put_contents('./log.txt', '3');
+        $order->setPaymentStatus('accepted');
+        $order->setPaymentDocumentNumber(getRequest('transaction'));
+//file_put_contents('./log.txt', getRequest('transaction'));
+        $order->commit();
 
-        $this->order->setPaymentStatus('accepted');
+	$buffer->clear();
+	$buffer->contentType('text/plain');
+	$buffer->push('OK - '.$order->getPaymentStatus());
 
-        $buffer->end();
+        return $buffer;
     }
 
     /**
@@ -109,12 +134,19 @@ class mandarinBankPayment extends payment
      */
     private function checkSignature()
     {
+        //$rawRequest = Service::Request()->getRawBody();
+	//$request = json_decode($rawRequest, true);
+        
+        //$status = $request['status'];
+        
         $status = getRequest('status');
 
         if ($status == 'failed') {
             return false;
         }
 
+        //$amount = $request['price'];
+        //$marchantId = $request['merchantId'];
         $amount = getRequest('price');
         $marchantId = getRequest('merchantId');
 
@@ -124,11 +156,11 @@ class mandarinBankPayment extends payment
         if (($amountStore != $amount || $amount <= 0) || ($marchantId != $marchantIdSettings)) {
             return false;
         }
-
+//file_put_contents('./log.txt', '22');
         if(!$this->check_sign($this->object->secret, $_POST)){
             return false;
         }
-
+//file_put_contents('./log.txt', '23');
         return true;
     }
 }
