@@ -1,17 +1,11 @@
 <?php
 /*
- * Plugin Name:       Mandarin-Payment-integration
- * Plugin URI:        https://github.com/mksnmx/mandarin-cms/tree/main/Wordpress
- * Description:       Allows you to accept shopping cart payments through the Mandarin payment gateway.
- * Version:           1.0
- * Author:            MandarinLtd
- * Author URI:        https://mandarin.io
- * License:           GPL v2 or later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Update URI:        https://github.com/mksnmx/mandarin-cms/tree/main/Wordpress
- * Text Domain:       my-basics-plugin
- * Domain Path:       /languages
- */
+Plugin Name: MandarinPay
+Plugin URI: http://www.mandarinbank.com/
+Description: Extends WooCommerce by Adding the MandarinPay Gateway.
+Version: 1.0
+Author: MandarinLtd
+*/
 
 add_action( 'plugins_loaded', 'mandarin_pay_init', 0 );
 function mandarin_pay_init() {
@@ -156,11 +150,36 @@ function mandarin_pay_init() {
                     
 			if (isset($_POST['status']) && $_POST['status'] == 'success'){
 				$hash_arr = array();
+                                //Test
+                                //file_put_contents('./log.txt', json_encode($_POST));
+                                // End Test
 				foreach($_POST as $key => $h_var){
 					if($key != 'sign'){
-						$hash_arr[$key] = $h_var;
+                                            switch ($key) {
+                                            case 'email':
+                                            case 'customer_email':
+                                                $hash_arr[$key] = sanitize_email($h_var);
+                                                break;
+                                            case 'callbackUrl':
+                                            case 'returnUrl':
+                                                $hash_arr[$key] = esc_url($h_var);
+                                                break;
+                                            case 'orderId':
+                                            case 'merchantId':
+                                                $hash_arr[$key] = sanitize_key($h_var);
+                                                break;
+                                            default:
+                                                if ($h_var == '  ') {
+                                                  $hash_arr[$key] = '  ';
+                                                } else {
+                                                  $hash_arr[$key] = sanitize_text_field($h_var);
+                                                }
+                                            }
 					}
 				}
+                                //Test
+                                //file_put_contents('./log2.txt', json_encode($hash_arr));
+                                // End Test
 				ksort($hash_arr);
 				$hash = hash('sha256',implode('-',$hash_arr)."-".$this->secret);
 				if($hash == $_POST['sign']){
@@ -174,7 +193,7 @@ function mandarin_pay_init() {
 			}
 			else {
 				if (isset($_POST['status'])){
-					$inv_id = $_POST['orderId'];
+					$inv_id = sanitize_key($_POST['orderId']);
 					$order = new WC_Order($inv_id);
 					$order->update_status('failed', __('Платеж не оплачен', 'woocommerce'));
 					wp_redirect($order->get_cancel_order_url());

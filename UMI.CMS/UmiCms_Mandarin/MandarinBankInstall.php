@@ -36,9 +36,9 @@ if($type){
     $group = $type->getFieldsGroupByName('payment_props_mandarin');
 
 
-    $fieldId = $fieldsCollection->addField('merchantid', 'MerchantId', 16);
+    $fieldId = $fieldsCollection->addField('merchantid', 'MerchantId', 2);
     $group->attachField($fieldId);
-    $fieldId = $fieldsCollection->addField('secret', 'Секретный ключ банка', 16);
+    $fieldId = $fieldsCollection->addField('secret', 'Секретный ключ банка', 2);
     $group->attachField($fieldId);
 }
 // Связываем внешний тип и внутренний объект
