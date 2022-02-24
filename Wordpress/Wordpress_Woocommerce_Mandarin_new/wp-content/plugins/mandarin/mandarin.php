@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: MandarinPay
-Plugin URI: http://www.mandarinbank.com/
-Description: Extends WooCommerce by Adding the MandarinPay Gateway.
+Plugin Name: Mandarin
+Plugin URI: https://mandarin.io/
+Description: Extends WooCommerce by Adding the Mandarin Gateway.
 Version: 1.0
 Author: MandarinLtd
 */
