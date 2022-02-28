@@ -1,4 +1,4 @@
-=== Mandarin-Payment-integration ===
+=== mandarin-pay ===
 Contributors: mandarinltd
 Stable tag: 1.0
 Tested up to: 5.9

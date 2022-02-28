@@ -1,10 +1,11 @@
 <?php
 /*
-Plugin Name: Mandarin
-Plugin URI: https://mandarin.io/
-Description: Extends WooCommerce by Adding the Mandarin Gateway.
-Version: 1.0
-Author: MandarinLtd
+ * Plugin Name: Mandarin
+ * Text Domain: mandarin-pay
+ * Plugin URI: https://mandarin.io/
+ * Description: Extends WooCommerce by Adding the Mandarin Gateway.
+ * Version: 1.0
+ * Author: MandarinLtd
 */
 
 add_action( 'plugins_loaded', 'mandarin_pay_init', 0 );
@@ -71,7 +72,7 @@ function mandarin_pay_init() {
 		
 		function payment_fields(){
 			if ($this->description){
-				echo wpautop(wptexturize($this->description));
+				echo esc_html(wpautop(wptexturize($this->description)));
 			}
 		}
 		
@@ -128,8 +129,8 @@ function mandarin_pay_init() {
 			return
 				'<form action="https://secure.mandarinpay.com/Pay" method="POST">'."\n".
 				$f.
-				'<input type="submit" class="button alt" value="'.__('Оплатить через MandarinPay', 'woocommerce').'" />
-				 <a class="button cancel" href="'.$order->get_cancel_order_url().'">'.__('Отказаться от оплаты & вернуться в корзину', 'woocommerce').'</a>'."\n".
+				'<input type="submit" class="button alt" value="'.__('Оплатить через MandarinPay', 'mandarin-pay').'" />
+				 <a class="button cancel" href="'.$order->get_cancel_order_url().'">'.__('Отказаться от оплаты & вернуться в корзину', 'mandarin-pay').'</a>'."\n".
 				'</form>';
 		}
 		
@@ -142,8 +143,8 @@ function mandarin_pay_init() {
 		}
 		
 		function receipt_page($order){
-			echo '<p>'.__('Спасибо за Ваш заказ, пожалуйста, нажмите кнопку ниже, чтобы заплатить.', 'woocommerce').'</p>';
-			echo $this->generate_form($order);
+			echo esc_html('<p>'.__('Спасибо за Ваш заказ, пожалуйста, нажмите кнопку ниже, чтобы заплатить.', 'mandarin-pay').'</p>');
+			echo esc_html($this->generate_form($order));
 		}
 		
 		function check_ipn_response(){
@@ -195,7 +196,7 @@ function mandarin_pay_init() {
 				if (isset($_POST['status'])){
 					$inv_id = sanitize_key($_POST['orderId']);
 					$order = new WC_Order($inv_id);
-					$order->update_status('failed', __('Платеж не оплачен', 'woocommerce'));
+					$order->update_status('failed', __('Платеж не оплачен', 'mandarin-pay'));
 					wp_redirect($order->get_cancel_order_url());
 					exit;
 				}
@@ -211,8 +212,8 @@ function mandarin_pay_init() {
                             exit;
 			}
 			$woocommerce->cart->empty_cart();
-			$order->add_order_note(__('Платеж успешно завершен.', 'woocommerce'));
-			$order->update_status('completed', __('Платеж успешно оплачен', 'woocommerce'));
+			$order->add_order_note(__('Платеж успешно завершен.', 'mandarin-pay'));
+			$order->update_status('completed', __('Платеж успешно оплачен', 'mandarin-pay'));
 			$order->payment_complete();
                         		
 			exit;
