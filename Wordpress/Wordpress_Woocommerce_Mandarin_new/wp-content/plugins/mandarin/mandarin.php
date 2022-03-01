@@ -161,10 +161,10 @@ function mandarin_pay_init() {
                                             case 'customer_email':
                                                 $hash_arr[$key] = sanitize_email($h_var);
                                                 break;
-                                            case 'callbackUrl':
-                                            case 'returnUrl':
-                                                $hash_arr[$key] = esc_url($h_var);
-                                                break;
+                                            //case 'callbackUrl':
+                                            //case 'returnUrl':
+                                            //    $hash_arr[$key] = esc_url($h_var);
+                                            //    break;
                                             case 'orderId':
                                             case 'merchantId':
                                                 $hash_arr[$key] = sanitize_key($h_var);
