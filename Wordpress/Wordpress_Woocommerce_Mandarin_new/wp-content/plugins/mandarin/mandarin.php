@@ -4,7 +4,7 @@
  * Text Domain: mandarin-pay
  * Plugin URI: https://mandarin.io/
  * Description: Extends WooCommerce by Adding the Mandarin Gateway.
- * Version: 1.0
+ * Version: 1.1
  * Author: MandarinLtd
 */
 
@@ -94,9 +94,9 @@ function mandarin_pay_init() {
 				$form = "";
 				foreach($fields as $key => $val)
 				{
-						$form = $form . '<input type="hidden" name="'.$key.'" value="' . htmlspecialchars($val) . '"/>'."\n";
+						$form = $form . '<input type="hidden" name="'.esc_attr($key).'" value="' . esc_attr(htmlspecialchars($val)) . '"/>'."\n";
 				}
-				$form = $form . '<input type="hidden" name="sign" value="'.$sign.'"/>';
+				$form = $form . '<input type="hidden" name="sign" value="'.esc_attr($sign).'"/>';
 				return $form;
 		}
 		
@@ -130,7 +130,7 @@ function mandarin_pay_init() {
 				'<form action="https://secure.mandarinpay.com/Pay" method="POST">'."\n".
 				$f.
 				'<input type="submit" class="button alt" value="'.__('Оплатить через MandarinPay', 'mandarin-pay').'" />
-				 <a class="button cancel" href="'.$order->get_cancel_order_url().'">'.__('Отказаться от оплаты & вернуться в корзину', 'mandarin-pay').'</a>'."\n".
+				 <a class="button cancel" href="'.wp_kses_post($order->get_cancel_order_url()).'">'.wp_kses_post(__('Отказаться от оплаты & вернуться в корзину', 'mandarin-pay')).'</a>'."\n".
 				'</form>';
 		}
 		
@@ -143,8 +143,8 @@ function mandarin_pay_init() {
 		}
 		
 		function receipt_page($order){
-			echo esc_html('<p>'.__('Спасибо за Ваш заказ, пожалуйста, нажмите кнопку ниже, чтобы заплатить.', 'mandarin-pay').'</p>');
-			echo esc_html($this->generate_form($order));
+			echo wp_kses_post('<p>'.__('Спасибо за Ваш заказ, пожалуйста, нажмите кнопку ниже, чтобы заплатить.', 'mandarin-pay').'</p>');
+			echo $this->generate_form($order);
 		}
 		
 		function check_ipn_response(){
