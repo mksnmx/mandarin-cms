@@ -4,7 +4,7 @@
  * Text Domain: mandarin-pay
  * Plugin URI: https://mandarin.io/
  * Description: Extends WooCommerce by Adding the Mandarin Gateway.
- * Version: 1.1
+ * Version: 1.2
  * Author: MandarinLtd
 */
 
@@ -16,7 +16,7 @@ function mandarin_pay_init() {
 
 	class Mandarin_Pay extends WC_Payment_Gateway {
 		function __construct(){
-			$this->id = "Mandarin_Pay";
+			$this->id = "mandarin_pay";
 			$this->method_title = __( "Mandarin", 'mandarin-pay' );
 			$this->order_button_text  = __( 'Proceed to MandarinPay', 'mandarin-pay' );
 			$this->method_description = __( "Mandarin Gateway Plug-in for WooCommerce", 'mandarin-pay' );
@@ -25,6 +25,7 @@ function mandarin_pay_init() {
 			$this->has_fields = false;
 			$this->init_form_fields();
 			$this->init_settings();
+            $this->supports = array('products');
 			
 			foreach ( $this->settings as $setting_key => $value ) {
 				$this->$setting_key = $value;
@@ -34,6 +35,8 @@ function mandarin_pay_init() {
 			add_action('woocommerce_receipt_' . $this->id, array($this, 'receipt_page'));
 			add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
 			add_action('woocommerce_api_mandarin_pay', array($this, 'check_ipn_response'));
+
+            add_filter('woocommerce_payment_gateways', array($this, 'add_gateway_class'));
 		}
 		
 		public function init_form_fields() {
@@ -231,6 +234,11 @@ function mandarin_pay_init() {
                         
 		}
 
+        public function add_gateway_class($gateways) {
+            $gateways[] = 'Mandarin_Pay';
+            return $gateways;
+        }
+
 	}
 	
 	add_filter( 'woocommerce_payment_gateways', 'add_mandarin_pay_gateway' );
@@ -248,3 +256,12 @@ function mandarin_pay_action_links( $links ) {
 	
 	return array_merge( $plugin_links, $links );
 }
+
+add_action('woocommerce_blocks_loaded', function() {
+    if (class_exists('Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType')) {
+        require_once __DIR__ . '/class-mandarin-blocks-support.php';  // Создай новый файл
+        add_action('woocommerce_blocks_payment_method_type_registration', function($registry) {
+            $registry->register(new Mandarin_Blocks_Support());
+        });
+    }
+});
