@@ -1,0 +1,15 @@
+{
+  "name": "mandarin/tutor-mandarin-payment",
+  "description": "Mandarin payment gateway for Tutor LMS",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "autoload": {
+    "psr-4": {
+      "TutorMandarinPayment\\": "./",
+      "Payments\\Mandarin\\": "src/Payments/Mandarin/"
+    }
+  },
+  "require": {
+    "php": ">=7.4"
+  }
+}
