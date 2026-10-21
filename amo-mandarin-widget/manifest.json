@@ -1,0 +1,41 @@
+{
+  "widget": {
+    "name": "widget.name",
+    "description": "widget.description",
+    "short_description": "widget.short_description",
+    "version": "0.2.0",
+    "interface_version": 2,
+    "init_once": false,
+    "locale": ["ru"],
+    "installation": true,
+    "support": {
+      "link": "https://mandarin.io",
+      "email": "support@mandarin.io"
+    }
+  },
+  "locations": ["lcard-1", "settings"],
+  "tour": {
+    "is_tour": true,
+    "tour_images": {
+      "ru": ["/images/tour_1_ru.png"]
+    },
+    "tour_description": "widget.tour_description"
+  },
+  "settings": {
+    "bearer": {
+      "name": "settings.bearer",
+      "type": "pass",
+      "required": true
+    },
+    "config": {
+      "name": "settings.config",
+      "type": "text",
+      "required": true
+    },
+    "link_field_id": {
+      "name": "settings.link_field_id",
+      "type": "text",
+      "required": false
+    }
+  }
+}
